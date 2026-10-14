@@ -1,98 +1,76 @@
-# SPRINT 1 – XÂY DỰNG CHỨC NĂNG CỐT LÕI
+# F  O  U  N  D  L  Y — Sprint 1 (Tuần 1)
 
-## 1. Thông tin Sprint
+**Tên dự án:** Hệ thống Quản lý và Tìm kiếm Đồ thất lạc trong Trường Đại học  
+**Sprint:** 01 – Xây dựng chức năng cốt lõi  
+**Thời gian:** Tuần 1 · **Ưu tiên:** P0 (cao nhất)
 
-- **Dự án:** Foundly – Hệ thống quản lý và tìm kiếm đồ thất lạc trong trường đại học
-- **Thời gian:** Tuần 1
-- **Mức ưu tiên:** P0 – Cao nhất
-- **Người quản lý công việc:** Nguyễn Minh Đức
+> **Về nguồn gốc:** Đây là **bản trích xuất và tái cấu trúc theo phạm vi Sprint 1** từ mã nguồn Foundly Final Full Operations đã xây dựng. Nó dùng để trình bày, kiểm thử và demo các chức năng của tuần đầu, **không phải bằng chứng rằng các chức năng đó thực sự đã được lập trình theo đúng thứ tự trong lịch sử Git**. Khi báo cáo tiến độ thực, nhóm cần đối chiếu với commit/issue và công việc thực tế của từng thành viên.
 
-### Mục tiêu
-Xây dựng phiên bản đầu tiên của hệ thống, cho phép người dùng đăng tin mất đồ, nhặt được đồ, xem danh sách bài đăng và tìm kiếm đồ thất lạc.
+## 1. Mục tiêu Sprint
 
----
+Sinh viên có thể đăng đồ thất lạc hoặc nhặt được; xem danh sách bài đăng tập trung; tìm kiếm bằng từ khóa; lọc theo danh mục/ngày đăng/khu vực; xem chi tiết để không phải lục các bài Facebook dễ bị trôi.
 
-## 2. Phân công nhiệm vụ
+## 2. Các User Story P0
 
-| Thành viên | Công việc | Kết quả cần đạt |
-|---|---|---|
-| Lê Gia Hoàng | Viết User Story, Acceptance Criteria và Product Backlog | Danh sách yêu cầu |
-| Nguyễn Minh Đức | Quản lý Sprint, phân công và theo dõi tiến độ trên GitHub | Bảng theo dõi Sprint 1 |
-| Nguyễn Anh Đức | Thiết kế giao diện trang chủ, đăng tin và tìm kiếm | Giao diện cơ bản |
-| Hoàng Doãn Khiêm | Xây dựng API đăng tin, xem danh sách và tìm kiếm | API hoạt động |
-| Phạm Việt Anh | Thiết kế cơ sở dữ liệu và các bảng liên quan | CSDL hoạt động |
+| US | Nội dung | Mã nguồn tách riêng (Frontend) | Backend chính |
+|---|---|---|---|
+| **US-01** | Đăng tin nhanh | `demo/web/src/features/US01_ReportForm.jsx` | `demo/api/Controllers/ReportsWriteController.cs` |
+| **US-02** | Danh sách bài đăng | `demo/web/src/features/US02_ReportList.jsx` | `demo/api/Controllers/ReportsReadController.cs` (`List`) |
+| **US-03** | Tìm theo từ khóa | `demo/web/src/features/US03_KeywordSearch.jsx` | `demo/api/Services/US03_KeywordSearch.cs` |
+| **US-04** | Lọc danh mục, ngày, khu vực | `demo/web/src/features/US04_ReportFilters.jsx` | `demo/api/Services/US04_ReportFilters.cs` |
+| **US-05** | Xem chi tiết | `demo/web/src/features/US05_ReportDetail.jsx` | `demo/api/Controllers/ReportsReadController.cs` (`Detail`) |
 
----
+**Chức năng hỗ trợ (không phải US mới):** đăng nhập tài khoản demo, quản lý danh mục/khu vực, CRUD sửa/xóa bài của mình, xác thực dữ liệu và kết nối PostgreSQL.
 
-## 3. Sprint Backlog
+## 3. Cấu trúc thư mục để đưa vào GitHub
 
-| Mã | Công việc | Người phụ trách | Ưu tiên | Trạng thái |
-|---|---|---|---|---|
-| TASK-01 | Viết User Story và Acceptance Criteria | Lê Gia Hoàng | P0 | Chưa cập nhật |
-| TASK-02 | Hoàn thiện Product Backlog | Lê Gia Hoàng | P0 | Chưa cập nhật |
-| TASK-03 | Thiết lập quản lý Sprint, phân công nhiệm vụ | Nguyễn Minh Đức | P0 | Chưa cập nhật |
-| TASK-04 | Thiết kế giao diện trang chủ và danh sách bài đăng | Nguyễn Anh Đức | P0 | Chưa cập nhật |
-| TASK-05 | Thiết kế form đăng tin, giao diện tìm kiếm | Nguyễn Anh Đức | P0 | Chưa cập nhật |
-| TASK-06 | Xây dựng API đăng tin và lấy danh sách | Hoàng Doãn Khiêm | P0 | Chưa cập nhật |
-| TASK-07 | Xây dựng API tìm kiếm và lọc dữ liệu | Hoàng Doãn Khiêm | P0 | Chưa cập nhật |
-| TASK-08 | Thiết kế cơ sở dữ liệu | Phạm Việt Anh | P0 | Chưa cập nhật |
-| TASK-09 | Tạo bảng, quan hệ và kiểm thử truy vấn | Phạm Việt Anh | P0 | Chưa cập nhật |
-| TASK-10 | Kiểm tra tích hợp và nghiệm thu Sprint 1 | Nguyễn Minh Đức phối hợp cả nhóm | P0 | Chưa cập nhật |
+```text
+notion/
+└── sprint-1/
+    ├── README.md                       # Tổng quan Sprint, bảng chức năng & map code
+    ├── 01_ke_hoach_sprint.md            # Mục tiêu, P0, backlog, đầu ra
+    ├── 02_phan_cong_va_tien_do.md       # Bảng nhận nhiệm vụ (cập nhật bằng chứng thực tế)
+    ├── 03_kiem_thu_nghiem_thu.md        # Kịch bản/tiêu chí, chưa tự đánh dấu đạt
+    ├── 04_huong_dan_trinh_bay.md        # Kịch bản nói và demo trước lớp
+    ├── 05_so_do_du_lieu.md              # Thiết kế dữ liệu Sprint 1
+    ├── user-stories/                   # 5 US riêng biệt, dễ phân công
+    │   ├── US-01.md ... US-05.md
+    └── demo/                           # PHIÊN BẢN CODE CHẠY ĐỘC LẬP
+        ├── compose.yaml                # localhost:5181 / API localhost:8081
+        ├── api/                        # ASP.NET Core + PostgreSQL
+        └── web/                        # React, mỗi US một component
+```
 
-Các trạng thái sử dụng: **Todo – In Progress – Done – Blocked**.
+**Không chép đè `notion/README.md` đang có** và không thay đổi project Foundly Full Operations. Chỉ thêm thư mục `notion/sprint-1/` vào repository.
 
----
+## 4. Chạy demo trong VS Code
 
-## 4. Nhiệm vụ quản lý của Nguyễn Minh Đức
+1. Mở Docker Desktop.
+2. Mở Terminal tại thư mục **`notion/sprint-1/demo`** (chứa `compose.yaml`).
+3. Chạy:
 
-### 4.1. Thiết lập công việc
-- [ ] Tạo bảng quản lý công việc Sprint 1.
-- [ ] Xác định danh sách nhiệm vụ cần thực hiện.
-- [ ] Phân công người phụ trách cho từng nhiệm vụ.
-- [ ] Xác định độ ưu tiên và tiêu chí hoàn thành.
+   ```powershell
+   docker compose up --build -d
+   docker compose ps
+   ```
+4. Website: **http://localhost:5181** · Health API: **http://localhost:8081/api/health**
+5. Tài khoản demo: `minh@campus.edu` / `Demo12345!`; hoặc `lan@campus.edu` / `Demo12345!`.
+6. Tắt demo mà giữ dữ liệu: `docker compose down`.
 
-### 4.2. Theo dõi tiến độ
-- [ ] Kiểm tra tiến độ thực hiện của từng thành viên.
-- [ ] Ghi nhận các công việc đang thực hiện.
-- [ ] Phát hiện công việc bị chậm hoặc gặp khó khăn.
-- [ ] Cập nhật trạng thái công việc trong Sprint Backlog.
+Không dùng `down -v` nếu muốn giữ bài đăng. Demo có Compose name và volume riêng, **không dùng chung database với Foundly đầy đủ**.
 
-### 4.3. Kiểm tra và nghiệm thu
-- [ ] Kiểm tra giao diện và các chức năng cơ bản.
-- [ ] Phối hợp kiểm tra kết nối Frontend, Backend, Database.
-- [ ] Đối chiếu kết quả với Acceptance Criteria.
-- [ ] Tổng hợp những công việc hoàn thành và chưa hoàn thành.
+> **Giới hạn:** Bản này được chuẩn bị từ mã nguồn hiện có, đã kiểm tra cấu trúc/cú pháp tĩnh, nhưng chưa xác nhận chạy trọn bộ Docker/.NET trong môi trường tạo file. Nhóm cần chạy và ghi kết quả nghiệm thu thực tế trước khi báo cáo hoàn thành.
 
----
+## 5. Phạm vi Sprint 1 / Không thuộc Sprint 1
 
-## 5. Chức năng cần nghiệm thu
+**Trong phạm vi:** đăng LOST/FOUND, danh sách, tìm từ khóa, lọc, chi tiết, CRUD cơ bản, kiểm tra dữ liệu đầu vào.  
+**Ngoài phạm vi:** matching, gợi ý phù hợp, notification, claim/xác minh, chat, hẹn gặp, bàn giao, quản trị mở rộng. Những phần đó vẫn thuộc phiên bản Foundly chính, **không trình bày là đầu ra tuần 1**.
 
-| Mã User Story | Chức năng | Điều kiện nghiệm thu |
-|---|---|---|
-| US-01 | Đăng tin nhanh | Người dùng đăng được tin hợp lệ, dữ liệu được lưu |
-| US-02 | Danh sách bài đăng | Bài đăng được hiển thị đầy đủ |
-| US-03 | Tìm kiếm | Tìm được bài đăng bằng từ khóa |
-| US-04 | Bộ lọc | Lọc được bài đăng theo danh mục, ngày và khu vực |
-| US-05 | Chi tiết bài đăng | Xem được mô tả, thời gian, địa điểm, trạng thái |
+## 6. Tài liệu liên quan
 
----
-
-## 6. Theo dõi tiến độ Sprint
-
-| Giai đoạn | Nội dung cần kiểm tra |
-|---|---|
-| Ngày 1 | Phân tích yêu cầu, phân công nhiệm vụ |
-| Ngày 2 | Tiến độ giao diện và thiết kế CSDL |
-| Ngày 3 | Tiến độ API và kết nối dữ liệu |
-| Ngày 4 | Kiểm thử tích hợp, ghi nhận lỗi |
-| Ngày 5 | Kiểm tra chức năng và tổng kết Sprint |
-
-## 7. Báo cáo kết quả Sprint 1
-
-**Các công việc đã hoàn thành:** Chưa tổng hợp.
-
-**Các công việc chưa hoàn thành:** Chưa tổng hợp.
-
-**Khó khăn và hướng giải quyết:** Cập nhật theo tình hình thực tế.
-
-**Kết quả bàn giao dự kiến:** Phiên bản Foundly cho phép đăng tin, xem danh sách, tìm kiếm và lọc thông tin đồ thất lạc.
+- [Kế hoạch Sprint 1](01_ke_hoach_sprint.md)
+- [Phân công và tiến độ](02_phan_cong_va_tien_do.md)
+- [Kiểm thử nghiệm thu](03_kiem_thu_nghiem_thu.md)
+- [Kịch bản trình bày](04_huong_dan_trinh_bay.md)
+- [Sơ đồ dữ liệu](05_so_do_du_lieu.md)
+- [Hướng dẫn kỹ thuật demo](demo/README.md)
