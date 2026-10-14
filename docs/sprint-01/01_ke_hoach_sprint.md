@@ -1,52 +1,61 @@
-# SPRINT 1 — Xây dựng chức năng cốt lõi
 
+# SPRINT 1 – XÂY DỰNG CHỨC NĂNG CỐT LÕI
+
+**Dự án:** Foundly – Hệ thống quản lý và tìm kiếm đồ thất lạc trong trường đại học  
 **Thời gian:** Tuần 1  
-**Mức độ ưu tiên:** P0 – Cao nhất
+**Ưu tiên:** P0 – Cao nhất  
+**Trạng thái công việc:** Hoàn thành (theo cập nhật của nhóm)
 
 ## 1. Mục tiêu
 
-Xây dựng phiên bản đầu tiên cho phép sinh viên **đăng thông tin đồ thất lạc và tìm kiếm đồ đã được người khác đăng**. Dữ liệu được tập trung thay vì bị phân tán ở nhiều nhóm Facebook; thao tác đăng tin phải đơn giản để khuyến khích người nhặt sử dụng.
+Xây dựng phiên bản đầu tiên để sinh viên đăng tin mất/nhặt được đồ, xem danh sách, tìm kiếm và lọc bài đăng tại một nơi. Sprint 1 giải quyết tình trạng thông tin phân tán, khó tìm lại do các bài đăng trong nhóm Facebook bị trôi.
 
-## 2. Danh sách chức năng
+## 2. Sprint Backlog
 
-| STT | Mã công việc | Chức năng | Mô tả | Mức ưu tiên |
+| Mã | Chức năng | Yêu cầu chính | Ưu tiên | Trạng thái |
 |---|---|---|---|---|
-| 1 | US-01 | Đăng tin nhanh | Chọn danh mục, nhập mô tả, thời gian, khu vực và tên món đồ, chọn LOST/FOUND | P0 |
-| 2 | US-02 | Danh sách bài đăng | Hiển thị bài đăng theo thứ tự rõ ràng, có phân trang | P0 |
-| 3 | US-03 | Tìm kiếm | Tìm theo tên hoặc từ khóa trong mô tả | P0 |
-| 4 | US-04 | Bộ lọc | Lọc danh mục, ngày đăng, khu vực; có tùy chọn LOST/FOUND | P0 |
-| 5 | US-05 | Chi tiết | Xem mô tả, thời gian, địa điểm, trạng thái | P0 |
+| US-01 | Đăng tin nhanh | Chọn LOST/FOUND, tên, danh mục, mô tả, thời gian và khu vực | P0 | Hoàn thành |
+| US-02 | Danh sách bài đăng | Hiển thị các bài đang mở, mới nhất trước, có phân trang | P0 | Hoàn thành |
+| US-03 | Tìm kiếm từ khóa | Tìm theo tên hoặc mô tả vật phẩm | P0 | Hoàn thành |
+| US-04 | Bộ lọc | Lọc theo danh mục, ngày đăng, khu vực và loại tin | P0 | Hoàn thành |
+| US-05 | Xem chi tiết | Xem đầy đủ mô tả, thời gian, khu vực và trạng thái | P0 | Hoàn thành |
 
-*Các mã US là mã quản lý công việc cho kế hoạch thực hiện, không thay thế định danh User Story gốc nếu tài liệu lớp có mã khác.*
+*US-01 đến US-05 là mã quản lý nhiệm vụ trong Sprint, không nhất thiết trùng mã User Story gốc của tài liệu môn học.*
 
 ## 3. Công việc kỹ thuật
 
-- Thiết kế giao diện trang chủ, biểu mẫu đăng và danh sách bài.
-- Thiết kế cơ sở dữ liệu `Student`, `Category`, `CampusLocation`, `ItemReport`.
-- Xây dựng API CRUD: `GET/POST/PUT/DELETE /api/reports` và `GET /api/reports/{id}`.
-- Tìm kiếm và lọc **tại PostgreSQL** để không lấy toàn bộ dữ liệu lên frontend.
-- Kiểm tra bắt buộc: tên, loại tin, danh mục, mô tả, thời gian và khu vực.
-- Thiết lập Docker Compose và tài khoản demo để trình bày.
+- **Frontend:** React; tách 5 chức năng thành các component riêng trong `sprint-01-demo/web/src/features/`.
+- **Backend:** ASP.NET Core Web API cho đăng bài, CRUD cơ bản, danh sách, tìm kiếm và lọc.
+- **Database:** PostgreSQL với 4 bảng `Students`, `Reports`, `Categories`, `Locations`.
+- **Ràng buộc:** Kiểm tra trường bắt buộc ở biểu mẫu và API; chỉ chủ bài được sửa/xóa.
+- **Triển khai:** Docker Compose chạy website, API và PostgreSQL độc lập với Foundly hoàn chỉnh.
 
-## 4. Kết quả đầu ra yêu cầu
+## 4. Kết quả bàn giao
 
-- [ ] Người dùng đăng được tin LOST hoặc FOUND.
-- [ ] Tin hợp lệ được lưu vào PostgreSQL.
-- [ ] Xem được danh sách tin còn hiệu lực.
-- [ ] Tìm kiếm theo từ khóa và lọc theo danh mục, ngày đăng, khu vực.
-- [ ] Xem chi tiết nội dung, trạng thái, thời gian và địa điểm.
+- [x] Có chức năng đăng tin LOST và FOUND.
+- [x] Có API lưu bài đăng vào PostgreSQL.
+- [x] Có danh sách bài đăng mới nhất, phân trang.
+- [x] Có tìm kiếm theo từ khóa.
+- [x] Có bộ lọc theo danh mục, ngày, khu vực và loại tin.
+- [x] Có trang xem chi tiết bài đăng.
+- [x] Mã nguồn Sprint 1 đã được tách và đưa vào repository.
 
-*Chỉ tick khi đã chạy demo và có bằng chứng nghiệm thu; bản code không tự chứng minh các ô đã hoàn thành.*
+**Mã nguồn:** [`sprint-01-demo`](../../sprint-01-demo/)  
+**Kiểm thử:** [03_kiem_thu_nghiem_thu.md](03_kiem_thu_nghiem_thu.md)
 
 ## 5. Tiêu chí nghiệm thu
 
 | Tiêu chí | Điều kiện đạt |
 |---|---|
-| Đăng tin | Tin hợp lệ được lưu thành công vào database |
-| Kiểm tra dữ liệu | Thiếu danh mục hoặc trường bắt buộc → hiển thị lỗi, không lưu |
-| Hiển thị | Tin vừa tạo xuất hiện trong danh sách |
-| Tìm kiếm | Từ khóa phù hợp trả đúng tin liên quan |
-| Bộ lọc | Chọn danh mục → chỉ còn bài thuộc danh mục tương ứng |
-| Chi tiết | Hiển thị đủ tên, mô tả, khu vực, thời gian, trạng thái |
+| Đăng tin | Dữ liệu hợp lệ được lưu vào bảng `Reports` |
+| Kiểm tra đầu vào | Thiếu danh mục/trường bắt buộc thì báo lỗi và không lưu |
+| Danh sách | Bài mới xuất hiện sau khi đăng thành công |
+| Tìm kiếm | Nhập từ khóa phù hợp thì trả về bài liên quan |
+| Bộ lọc | Chỉ hiển thị bài đáp ứng danh mục/ngày/khu vực đã chọn |
+| Chi tiết | Hiển thị đúng tên, mô tả, thời gian, khu vực và trạng thái |
 
-**Lý do ưu tiên P0:** Không có đăng tin thì không có dữ liệu; không có danh sách/tìm kiếm thì chưa giải quyết vấn đề bài Facebook bị trôi và phân tán.
+## 6. Tổng kết
+
+Theo cập nhật của nhóm, **5/5 hạng mục P0 đã hoàn thành về mặt triển khai**. Nhóm cần lưu ảnh, log hoặc kết quả kiểm thử trên localhost vào hồ sơ nghiệm thu để xác nhận chất lượng vận hành, không chỉ dựa vào trạng thái nhiệm vụ.
+
+**Ngoài phạm vi Sprint 1:** Matching, thông báo, xác minh, chat, phòng bàn giao và Admin; các chức năng này thuộc những Sprint sau.
