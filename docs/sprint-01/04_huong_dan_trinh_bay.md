@@ -1,74 +1,90 @@
-
 # HƯỚNG DẪN TRÌNH BÀY SPRINT 1
 
 **Dự án:** Foundly – Hệ thống quản lý và tìm kiếm đồ thất lạc  
 **Sprint:** 1 – Xây dựng chức năng cốt lõi  
-**Thời lượng gợi ý:** 6–8 phút
+**Thời lượng dự kiến:** 15 phút
 
-## 1. Phân chia nội dung trình bày
+## 1. Nội dung trình bày
 
-| Người trình bày | Nội dung | Thời lượng gợi ý |
+- Giới thiệu dự án Foundly và vấn đề cần giải quyết.
+- Trình bày mục tiêu Sprint 1 và 5 User Story P0.
+- Giới thiệu kết quả triển khai.
+- Demo trực tiếp các chức năng US-01 đến US-05.
+- Giải thích kiến trúc hệ thống và cơ sở dữ liệu.
+- Tổng kết kết quả Sprint và định hướng phát triển.
+
+## 2. Giới thiệu Sprint 1
+
+Trong Sprint 1, nhóm tập trung xây dựng 5 chức năng cốt lõi:
+
+| Mã | Chức năng | Trạng thái |
 |---|---|---|
-| **Nguyễn Minh Đức** | Mục tiêu, phạm vi Sprint, bảng phân công và tiến độ | 1 phút |
-| **Lê Gia Hoàng** | 5 User Story P0 và Acceptance Criteria | 1 phút |
-| **Nguyễn Anh Đức** | Demo giao diện US-01 đến US-05 | 2 phút |
-| **Hoàng Doãn Khiêm** | Giải thích API, luồng thêm bài và tìm kiếm | 1 phút |
-| **Phạm Việt Anh** | Giải thích 4 bảng PostgreSQL, quan hệ và minh chứng lưu dữ liệu | 1 phút |
+| US-01 | Đăng tin nhanh | Hoàn thành |
+| US-02 | Hiển thị danh sách bài đăng | Hoàn thành |
+| US-03 | Tìm kiếm theo từ khóa | Hoàn thành |
+| US-04 | Bộ lọc tìm kiếm | Hoàn thành |
+| US-05 | Xem chi tiết bài đăng | Hoàn thành |
 
-Dành thêm 1–2 phút cho kết quả nghiệm thu và câu hỏi của giảng viên.
-
-## 2. Nội dung mở đầu
-
-> Trong Sprint 1, nhóm em tập trung giải quyết khó khăn khi tìm đồ thất lạc qua bài đăng Facebook: thông tin dễ bị trôi và phân tán. Vì vậy, nhóm ưu tiên 5 chức năng P0: đăng tin, danh sách, tìm kiếm, bộ lọc và xem chi tiết. Theo kế hoạch phân công, các đầu việc triển khai hiện được nhóm đánh dấu hoàn thành.
+Các chức năng được ưu tiên vì tạo nền tảng cho quá trình đăng tin, lưu trữ và tìm kiếm thông tin đồ thất lạc.
 
 ## 3. Demo trực tiếp
 
-1. Truy cập `http://localhost:5181`; đăng nhập tài khoản demo.
-2. **US-01:** Tạo bài LOST hoặc FOUND, chọn danh mục, khu vực, thời gian, nhập mô tả rồi đăng.
-3. **US-02:** Xác nhận bài vừa tạo xuất hiện trong danh sách, mới nhất trước.
-4. **US-03:** Nhập từ khóa có trong tên hoặc mô tả của bài vừa đăng.
-5. **US-04:** Chọn bộ lọc danh mục, khu vực và ngày đăng để thu hẹp kết quả.
-6. **US-05:** Nhấn `Xem chi tiết` và chỉ các trường tên, mô tả, trạng thái, thời gian, địa điểm.
-7. Nếu còn thời gian, thử gửi form thiếu danh mục để minh họa kiểm tra dữ liệu.
-8. Mở PostgreSQL bằng Terminal để cho thấy bài vừa tạo thực sự nằm trong bảng `Reports`.
+**Website:** http://localhost:5181
 
-## 4. Giải thích kiến trúc
+1. **US-01:** Đăng nhập, tạo bài LOST hoặc FOUND với đầy đủ thông tin.
+2. **US-02:** Kiểm tra bài vừa tạo xuất hiện trong danh sách.
+3. **US-03:** Nhập từ khóa để tìm kiếm bài đăng.
+4. **US-04:** Lọc theo danh mục, khu vực và ngày đăng.
+5. **US-05:** Mở chi tiết bài đăng để xem đầy đủ thông tin.
+6. **Database:** Truy vấn bảng `Reports` trong PostgreSQL để chứng minh dữ liệu được lưu thực tế.
+
+## 4. Kiến trúc hệ thống
 
 ```text
-React (localhost:5181)
+React Frontend
        ↓ HTTP / JSON
-ASP.NET Core Web API (localhost:8081)
+ASP.NET Core Web API
        ↓ Entity Framework Core
-PostgreSQL (database sprint1)
+PostgreSQL Database
 ```
 
-- **React:** biểu mẫu và giao diện từng User Story.
-- **ASP.NET Core:** kiểm tra dữ liệu, quyền sửa/xóa, API CRUD, tìm kiếm và lọc.
-- **PostgreSQL:** lưu `Students`, `Reports`, `Categories`, `Locations`.
-- **Docker Compose:** khởi động ba dịch vụ trong môi trường localhost.
+- **React:** Hiển thị giao diện và tiếp nhận thao tác người dùng.
+- **ASP.NET Core:** Xử lý nghiệp vụ, kiểm tra dữ liệu và cung cấp API.
+- **PostgreSQL:** Lưu trữ thông tin bài đăng, sinh viên, danh mục và khu vực.
+- **Docker:** Triển khai các thành phần trên localhost.
 
-## 5. Giải thích phần việc của mỗi thành viên
+## 5. Kết quả Sprint 1
 
-- **Lê Gia Hoàng:** phụ trách xác định yêu cầu, User Story, Acceptance Criteria và Product Backlog.
-- **Nguyễn Minh Đức:** phụ trách GitHub Project, Issues, kế hoạch và theo dõi tiến độ.
-- **Nguyễn Anh Đức:** phụ trách frontend và các giao diện tương ứng với 5 US.
-- **Hoàng Doãn Khiêm:** phụ trách API và xử lý nghiệp vụ phía backend.
-- **Phạm Việt Anh:** phụ trách lược đồ dữ liệu và PostgreSQL.
+- Hoàn thành mã nguồn 5/5 User Story P0.
+- Xây dựng giao diện đăng tin và tìm kiếm đồ thất lạc.
+- Tích hợp Frontend, Backend và PostgreSQL.
+- Xây dựng API lưu trữ, truy vấn và quản lý bài đăng.
+- Đưa mã nguồn và tài liệu Sprint 1 lên GitHub.
 
-Lưu ý: bảng trên thể hiện **phân công/trách nhiệm**. Để chứng minh đóng góp thực tế, xuất trình Issues, Pull Requests và lịch sử commit nếu giảng viên yêu cầu.
+Kết quả kiểm thử và minh chứng nghiệm thu được quản lý trong `03_kiem_thu_nghiem_thu.md`.
 
 ## 6. Câu hỏi giảng viên có thể hỏi
 
-**Dữ liệu bài đăng được lưu ở đâu?** Trong PostgreSQL, bảng `Reports`; không phải LocalStorage hay mảng cố định trên React.
+**Câu 1: Dữ liệu được lưu ở đâu?**
 
-**Vì sao Sprint 1 chưa có Matching?** Vì cần ưu tiên xây dựng nguồn dữ liệu bài đăng và khả năng tra cứu trước. Matching, thông báo và bàn giao thuộc các Sprint sau.
+Dữ liệu được lưu trong PostgreSQL, chủ yếu ở bảng `Reports`.
 
-**Tìm kiếm xử lý ở đâu?** Backend áp dụng tìm kiếm bằng PostgreSQL `ILIKE`, kết hợp phân trang; frontend chỉ gửi điều kiện tìm kiếm.
+**Câu 2: Vì sao chưa triển khai Matching?**
 
-**Làm thế nào để chứng minh dữ liệu đã lưu?** Đăng bài trên web, sau đó truy vấn bảng `Reports` bằng `psql` để thấy bản ghi mới.
+Vì Sprint 1 ưu tiên xây dựng nguồn dữ liệu và khả năng tìm kiếm. Matching thuộc phạm vi Sprint tiếp theo.
 
-**Toàn bộ Sprint đã được kiểm thử đạt chưa?** Mã nguồn 5 US đã hoàn thiện theo cập nhật nhóm; kết quả nghiệm thu cần đối chiếu ảnh/log chạy thực tế trong tài liệu kiểm thử. Không dùng việc đã upload code làm bằng chứng thay thế.
+**Câu 3: Làm sao chứng minh dữ liệu được lưu thật?**
 
-## 7. Kết luận trình bày
+Đăng bài mới trên website, sau đó truy vấn bảng `Reports` trong PostgreSQL.
 
-> Sprint 1 đã hoàn thành phạm vi triển khai 5 chức năng P0, hình thành luồng đăng tin – lưu PostgreSQL – danh sách – tìm kiếm/lọc – xem chi tiết. Đây là nền tảng cho các chức năng Matching và trao trả trong những Sprint tiếp theo.
+**Câu 4: Vì sao sử dụng PostgreSQL thay vì LocalStorage?**
+
+PostgreSQL hỗ trợ lưu trữ dữ liệu tập trung, quản lý quan hệ và cho phép nhiều người dùng truy cập.
+
+**Câu 5: Nhóm quản lý tiến độ bằng cách nào?**
+
+Sử dụng GitHub Repository, Issues, Sprint Backlog và theo dõi trạng thái công việc.
+
+## 7. Tổng kết
+
+Sprint 1 đã hoàn thành phạm vi triển khai 5 chức năng cốt lõi, tạo nền tảng để phát triển các nghiệp vụ nâng cao như Matching, thông báo, xác minh chủ sở hữu và bàn giao tài sản trong những Sprint tiếp theo.
