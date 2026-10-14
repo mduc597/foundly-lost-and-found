@@ -1,0 +1,36 @@
+name: foundly-sprint1
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: sprint1
+      POSTGRES_USER: sprint1
+      POSTGRES_PASSWORD: sprint1_local_only
+    volumes:
+      - sprint1_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sprint1 -d sprint1"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  api:
+    build: ./api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Main: Host=postgres;Port=5432;Database=sprint1;Username=sprint1;Password=sprint1_local_only
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8081:8080"
+  web:
+    build: ./web
+    environment:
+      API_PROXY_TARGET: http://api:8080
+    depends_on:
+      - api
+    ports:
+      - "127.0.0.1:5181:5181"
+volumes:
+  sprint1_pg_data:
