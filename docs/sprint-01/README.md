@@ -73,4 +73,4 @@ Không dùng `down -v` nếu muốn giữ bài đăng. Demo có Compose name và
 - [Kiểm thử nghiệm thu](03_kiem_thu_nghiem_thu.md)
 - [Kịch bản trình bày](04_huong_dan_trinh_bay.md)
 - [Sơ đồ dữ liệu](05_so_do_du_lieu.md)
-- [Hướng dẫn kỹ thuật demo](demo/README.md)
+- [Hướng dẫn kỹ thuật demo](../../sprint-01-demo/README.md)
