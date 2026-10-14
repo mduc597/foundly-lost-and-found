@@ -1,40 +1,74 @@
-# Kịch bản thuyết trình Sprint 1 (5–7 phút)
 
-## 1. Nêu vấn đề (45 giây)
-"Nội dung tìm đồ trên Facebook thường bị trôi và nằm ở nhiều nhóm khác nhau. Sprint 1 tập trung giải quyết hai nút thắt: tạo dữ liệu có cấu trúc và tìm kiếm lại dễ dàng."
+# HƯỚNG DẪN TRÌNH BÀY SPRINT 1
 
-## 2. Mục tiêu và phạm vi (45 giây)
-- Sprint 1, tuần 1, P0, 5 mã US-01 đến US-05.
-- Phạm vi: đăng tin, danh sách, tìm kiếm, lọc, chi tiết.
-- Các module Matching, xác minh, chat, hẹn bàn giao, Admin thuộc giai đoạn sau, không nhận là kết quả tuần 1.
+**Dự án:** Foundly – Hệ thống quản lý và tìm kiếm đồ thất lạc  
+**Sprint:** 1 – Xây dựng chức năng cốt lõi  
+**Thời lượng gợi ý:** 6–8 phút
 
-## 3. Kiến trúc (45 giây)
-- React frontend (5 component độc lập theo US).
-- ASP.NET Core xử lý validation/CRUD và truy vấn.
-- PostgreSQL lưu 4 bảng chính; Docker Compose khởi chạy 3 dịch vụ.
+## 1. Phân chia nội dung trình bày
 
-## 4. Demo trực tiếp (3 phút)
-1. Mở `http://localhost:5181`, đăng nhập Minh.
-2. US-01: nhập một ví bị mất đủ danh mục/thời gian/khu vực → Đăng tin.
-3. US-02: xem bài mới ở danh sách.
-4. US-03: nhập `ví` → tìm thấy bài vừa tạo.
-5. US-04: lọc đúng danh mục Ví & túi và khu vực.
-6. US-05: mở chi tiết, cho thấy mô tả/thời gian/trạng thái.
-7. Nếu còn thời gian: thử bỏ danh mục để chứng minh validation; sửa hoặc xóa bài của chính mình.
+| Người trình bày | Nội dung | Thời lượng gợi ý |
+|---|---|---|
+| **Nguyễn Minh Đức** | Mục tiêu, phạm vi Sprint, bảng phân công và tiến độ | 1 phút |
+| **Lê Gia Hoàng** | 5 User Story P0 và Acceptance Criteria | 1 phút |
+| **Nguyễn Anh Đức** | Demo giao diện US-01 đến US-05 | 2 phút |
+| **Hoàng Doãn Khiêm** | Giải thích API, luồng thêm bài và tìm kiếm | 1 phút |
+| **Phạm Việt Anh** | Giải thích 4 bảng PostgreSQL, quan hệ và minh chứng lưu dữ liệu | 1 phút |
 
-## 5. Tiêu chí & tổng kết (45 giây)
-- Đối chiếu các dòng nghiệm thu trong `03_kiem_thu_nghiem_thu.md`.
-- Chỉ báo đạt các trường hợp đã thử thành công trên máy.
-- Chuẩn bị cho Sprint sau: Matching và thông báo sẽ dùng dữ liệu bài đã được chuẩn hóa từ Sprint 1.
+Dành thêm 1–2 phút cho kết quả nghiệm thu và câu hỏi của giảng viên.
 
-## Câu hỏi giảng viên có thể hỏi
+## 2. Nội dung mở đầu
 
-**Vì sao không triển khai Matching trong Sprint 1?** Vì chưa có bài đăng thì Matching không có dữ liệu để hoạt động; chức năng P0 là tạo dữ liệu và tra cứu.
+> Trong Sprint 1, nhóm em tập trung giải quyết khó khăn khi tìm đồ thất lạc qua bài đăng Facebook: thông tin dễ bị trôi và phân tán. Vì vậy, nhóm ưu tiên 5 chức năng P0: đăng tin, danh sách, tìm kiếm, bộ lọc và xem chi tiết. Theo kế hoạch phân công, các đầu việc triển khai hiện được nhóm đánh dấu hoàn thành.
 
-**Tìm kiếm chạy ở frontend hay backend?** Backend áp dụng `ILIKE` tại PostgreSQL, có phân trang; frontend chỉ gửi query.
+## 3. Demo trực tiếp
 
-**Vì sao cần bảng danh mục và vị trí?** Để lọc chính xác theo dữ liệu chuẩn, tránh người dùng gõ nhiều cách khác nhau.
+1. Truy cập `http://localhost:5181`; đăng nhập tài khoản demo.
+2. **US-01:** Tạo bài LOST hoặc FOUND, chọn danh mục, khu vực, thời gian, nhập mô tả rồi đăng.
+3. **US-02:** Xác nhận bài vừa tạo xuất hiện trong danh sách, mới nhất trước.
+4. **US-03:** Nhập từ khóa có trong tên hoặc mô tả của bài vừa đăng.
+5. **US-04:** Chọn bộ lọc danh mục, khu vực và ngày đăng để thu hẹp kết quả.
+6. **US-05:** Nhấn `Xem chi tiết` và chỉ các trường tên, mô tả, trạng thái, thời gian, địa điểm.
+7. Nếu còn thời gian, thử gửi form thiếu danh mục để minh họa kiểm tra dữ liệu.
+8. Mở PostgreSQL bằng Terminal để cho thấy bài vừa tạo thực sự nằm trong bảng `Reports`.
 
-**Đăng tin thiếu dữ liệu thì sao?** HTML form kiểm tra sơ bộ; ASP.NET Core kiểm tra lại và trả HTTP 400 nếu sai.
+## 4. Giải thích kiến trúc
 
-**Đây có phải commit được làm từ tuần 1?** Không. Đây là bản phân rã từ code hiện có để minh họa ranh giới Sprint 1. Bằng chứng tiến độ thực là Issues/commit theo ngày và phần việc thành viên thực hiện.
+```text
+React (localhost:5181)
+       ↓ HTTP / JSON
+ASP.NET Core Web API (localhost:8081)
+       ↓ Entity Framework Core
+PostgreSQL (database sprint1)
+```
+
+- **React:** biểu mẫu và giao diện từng User Story.
+- **ASP.NET Core:** kiểm tra dữ liệu, quyền sửa/xóa, API CRUD, tìm kiếm và lọc.
+- **PostgreSQL:** lưu `Students`, `Reports`, `Categories`, `Locations`.
+- **Docker Compose:** khởi động ba dịch vụ trong môi trường localhost.
+
+## 5. Giải thích phần việc của mỗi thành viên
+
+- **Lê Gia Hoàng:** phụ trách xác định yêu cầu, User Story, Acceptance Criteria và Product Backlog.
+- **Nguyễn Minh Đức:** phụ trách GitHub Project, Issues, kế hoạch và theo dõi tiến độ.
+- **Nguyễn Anh Đức:** phụ trách frontend và các giao diện tương ứng với 5 US.
+- **Hoàng Doãn Khiêm:** phụ trách API và xử lý nghiệp vụ phía backend.
+- **Phạm Việt Anh:** phụ trách lược đồ dữ liệu và PostgreSQL.
+
+Lưu ý: bảng trên thể hiện **phân công/trách nhiệm**. Để chứng minh đóng góp thực tế, xuất trình Issues, Pull Requests và lịch sử commit nếu giảng viên yêu cầu.
+
+## 6. Câu hỏi giảng viên có thể hỏi
+
+**Dữ liệu bài đăng được lưu ở đâu?** Trong PostgreSQL, bảng `Reports`; không phải LocalStorage hay mảng cố định trên React.
+
+**Vì sao Sprint 1 chưa có Matching?** Vì cần ưu tiên xây dựng nguồn dữ liệu bài đăng và khả năng tra cứu trước. Matching, thông báo và bàn giao thuộc các Sprint sau.
+
+**Tìm kiếm xử lý ở đâu?** Backend áp dụng tìm kiếm bằng PostgreSQL `ILIKE`, kết hợp phân trang; frontend chỉ gửi điều kiện tìm kiếm.
+
+**Làm thế nào để chứng minh dữ liệu đã lưu?** Đăng bài trên web, sau đó truy vấn bảng `Reports` bằng `psql` để thấy bản ghi mới.
+
+**Toàn bộ Sprint đã được kiểm thử đạt chưa?** Mã nguồn 5 US đã hoàn thiện theo cập nhật nhóm; kết quả nghiệm thu cần đối chiếu ảnh/log chạy thực tế trong tài liệu kiểm thử. Không dùng việc đã upload code làm bằng chứng thay thế.
+
+## 7. Kết luận trình bày
+
+> Sprint 1 đã hoàn thành phạm vi triển khai 5 chức năng P0, hình thành luồng đăng tin – lưu PostgreSQL – danh sách – tìm kiếm/lọc – xem chi tiết. Đây là nền tảng cho các chức năng Matching và trao trả trong những Sprint tiếp theo.
