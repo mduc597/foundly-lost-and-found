@@ -1,25 +1,74 @@
-# Checklist nghiệm thu Sprint 1
 
-**Hướng dẫn:** Khởi chạy demo `http://localhost:5181`, thực hiện từng trường hợp và ghi kết quả. Trạng thái mặc định là **Chưa chạy** vì bản ZIP chưa được xác nhận chạy Docker trên máy báo cáo.
+# KIỂM THỬ VÀ NGHIỆM THU SPRINT 1
 
-| ID | US | Cách kiểm tra | Kết quả mong đợi | Trạng thái thực tế |
+**Dự án:** Foundly  
+**Thời gian:** Tuần 1  
+**Phạm vi:** US-01 đến US-05  
+**Trạng thái triển khai:** Hoàn thành 5/5 US theo cập nhật của nhóm.
+
+## 1. Môi trường kiểm thử
+
+- **Frontend:** React – `http://localhost:5181`
+- **Backend:** ASP.NET Core – `http://localhost:8081/api/health`
+- **Database:** PostgreSQL, database `sprint1`, chạy qua Docker Compose
+- **Tài khoản demo:** `minh@campus.edu` hoặc `lan@campus.edu` (mật khẩu demo theo README trong mã nguồn)
+- **Lệnh khởi động:** `docker compose up --build -d` tại thư mục `sprint-01-demo`
+
+## 2. Ma trận kiểm thử và tiêu chí đạt
+
+| TC | US | Thao tác kiểm tra | Kết quả mong đợi | Triển khai |
 |---|---|---|---|---|
-| TC-01 | US-01 | Đăng nhập Minh, tạo LOST với mọi trường hợp lệ | Thông báo lưu thành công, tin mới trong danh sách | Chưa chạy |
-| TC-02 | US-01 | Bỏ trống danh mục rồi gửi | Form báo thiếu, không tạo tin | Chưa chạy |
-| TC-03 | US-01 | Nhập mô tả dưới 10 ký tự | API/form từ chối, báo lỗi cụ thể | Chưa chạy |
-| TC-04 | US-02 | Mở trang mặc định | Có danh sách, sắp xếp mới nhất và tổng số tin | Chưa chạy |
-| TC-05 | US-03 | Tìm `ví` | Chỉ trả bài có tên/mô tả chứa `ví` | Chưa chạy |
-| TC-06 | US-03 | Tìm chuỗi không xuất hiện | Danh sách trống, không lỗi server | Chưa chạy |
-| TC-07 | US-04 | Lọc danh mục Ví & túi | Chỉ hiện bài thuộc danh mục đã chọn | Chưa chạy |
-| TC-08 | US-04 | Lọc Thư viện và loại FOUND | Chỉ hiện FOUND tại thư viện | Chưa chạy |
-| TC-09 | US-04 | Lọc theo ngày đăng | Chỉ hiện bài trong khoảng ngày đã chọn | Chưa chạy |
-| TC-10 | US-05 | Click chi tiết bài | Đủ mô tả, danh mục, thời gian, địa điểm, trạng thái | Chưa chạy |
-| TC-11 | CRUD | Sửa bài của Minh | Nội dung cập nhật sau tải lại | Chưa chạy |
-| TC-12 | CRUD | Dùng Lan thử sửa/xóa bài của Minh bằng API | Backend chặn 403 | Chưa chạy |
-| TC-13 | CRUD | Xóa bài của Minh | Không còn trong danh sách | Chưa chạy |
-| TC-14 | Bảo mật | Không đăng nhập rồi POST bài | API trả 401 | Chưa chạy |
-| TC-15 | Responsive | Bật F12 ở độ rộng 375px | Form, bộ lọc và card không tràn ngang | Chưa chạy |
+| TC-01 | US-01 | Đăng nhập, tạo bài LOST với dữ liệu hợp lệ | Báo thành công và lưu vào `Reports` | Hoàn thành |
+| TC-02 | US-01 | Bỏ trống danh mục | Báo lỗi, không thêm bản ghi | Hoàn thành |
+| TC-03 | US-01 | Nhập mô tả dưới 10 ký tự | Form/API từ chối | Hoàn thành |
+| TC-04 | US-02 | Mở danh sách | Hiển thị bài OPEN, mới nhất trước | Hoàn thành |
+| TC-05 | US-02 | Đăng thêm một bài rồi tải lại | Bài mới vẫn xuất hiện | Hoàn thành |
+| TC-06 | US-03 | Nhập từ khóa `ví` | Trả bài có tên hoặc mô tả liên quan | Hoàn thành |
+| TC-07 | US-03 | Nhập từ khóa không có kết quả | Hiển thị danh sách trống, không lỗi API | Hoàn thành |
+| TC-08 | US-04 | Chọn danh mục `Ví & túi` | Chỉ trả các bài thuộc danh mục | Hoàn thành |
+| TC-09 | US-04 | Lọc khu vực `Thư viện`, loại `FOUND` | Chỉ trả các bài thỏa đồng thời hai điều kiện | Hoàn thành |
+| TC-10 | US-04 | Lọc khoảng ngày đăng | Chỉ trả bài trong khoảng ngày | Hoàn thành |
+| TC-11 | US-05 | Nhấn `Xem chi tiết` | Đúng mô tả, danh mục, thời gian, khu vực, trạng thái | Hoàn thành |
+| TC-12 | CRUD | Chủ bài chỉnh sửa hoặc xóa bài | Nội dung được cập nhật / xóa đúng | Hoàn thành |
+| TC-13 | Phân quyền | Người khác thử sửa bài không thuộc quyền | API từ chối, không thay đổi dữ liệu | Hoàn thành |
 
-**Bằng chứng cần chụp:** Trang danh sách → Form đăng thành công → Lỗi thiếu thông tin → Kết quả tìm kiếm → Lọc danh mục → Chi tiết bài → Docker `compose ps` (API/web/db đang chạy).
+**Cách hiểu cột “Triển khai”:** Đã có code thực hiện tình huống/điều kiện tương ứng. Đây **không phải** biên bản xác nhận mọi ca kiểm thử đều đã chạy và đạt trên máy nhóm.
 
-**Lưu ý:** Đánh giá P0 dựa vào 5 tiêu chí người dùng yêu cầu; CRUD nâng cao, bảo mật và responsive là kiểm tra bổ trợ.
+## 3. Minh chứng nghiệm thu cần lưu
+
+| Minh chứng | Vị trí nên lưu |
+|---|---|
+| Ảnh đăng tin hợp lệ và thông báo thành công | `docs/sprint-01/evidence/TC-01.png` |
+| Ảnh cảnh báo thiếu danh mục | `docs/sprint-01/evidence/TC-02.png` |
+| Ảnh danh sách chứa bài mới | `docs/sprint-01/evidence/TC-05.png` |
+| Ảnh tìm kiếm, lọc theo danh mục/khu vực | `docs/sprint-01/evidence/TC-06.png`, `TC-08.png` |
+| Ảnh hộp thoại chi tiết bài đăng | `docs/sprint-01/evidence/TC-11.png` |
+| Log/ảnh dữ liệu mới trong PostgreSQL | `docs/sprint-01/evidence/database.png` |
+
+Đây là **đường dẫn đề xuất**. Chỉ tạo và gắn ảnh thật khi nhóm đã chụp trên máy chạy demo; không coi các ảnh chưa tồn tại là bằng chứng đã có.
+
+## 4. Kiểm tra dữ liệu PostgreSQL
+
+Mở Terminal trong `sprint-01-demo`:
+
+```powershell
+docker compose exec postgres psql -U sprint1 -d sprint1
+```
+
+Trong cửa sổ `psql`, chạy:
+
+```sql
+\dt
+SELECT "ItemName", "Type", "Status", "CreatedAt"
+FROM "Reports"
+ORDER BY "CreatedAt" DESC
+LIMIT 10;
+```
+
+Đăng bài mới trên web, chạy lại truy vấn và đối chiếu bản ghi.
+
+## 5. Kết luận nghiệm thu
+
+**Về phát triển:** 5/5 US P0 đã được đánh dấu Hoàn thành theo xác nhận nhóm và có mã nguồn tương ứng.
+
+**Về kiểm thử đầu-cuối:** Chỉ ghi “Đạt 100%” khi đã chạy đủ ca thử trên localhost và đính kèm bằng chứng; hiện tài liệu này chưa kèm log/ảnh kết quả cho từng TC.
