@@ -1,0 +1,20 @@
+
+### US-00: Đăng ký, đăng nhập và đăng xuất
+
+**User Story:**
+Là sinh viên, tôi muốn đăng ký và đăng nhập vào hệ thống Foundly để có thể đăng tin, tìm kiếm và quản lý các vật phẩm thất lạc.
+
+**Acceptance Criteria:**
+- AC01: Người dùng có thể đăng ký bằng họ tên, email và mật khẩu.
+- AC02: Hệ thống kiểm tra email hợp lệ và không cho phép email trùng.
+- AC03: Người dùng có thể đăng nhập bằng email và mật khẩu.
+- AC04: Hiển thị thông báo khi thông tin đăng nhập không chính xác.
+- AC05: Người dùng có thể đăng xuất khỏi hệ thống.
+- AC06: Chỉ tài khoản đã đăng nhập mới có quyền đăng tin.
+- AC07: Mật khẩu được lưu an toàn dưới dạng hash.
+
+**Độ ưu tiên:** P0 – Bắt buộc
+
+**Sprint:** Sprint 1
+
+**Trạng thái:** Chờ kiểm thử và nghiệm thu
