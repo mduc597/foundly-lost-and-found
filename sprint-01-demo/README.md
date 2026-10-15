@@ -43,6 +43,7 @@ docker compose down
 
 | Method | URL | US |
 |---|---|---|
+| POST | `/api/auth/register` | US-00 |
 | POST | `/api/auth/login` | nền tảng đăng bài |
 | POST | `/api/auth/logout` | nền tảng đăng bài |
 | GET | `/api/catalog` | US-01 / US-04 |
