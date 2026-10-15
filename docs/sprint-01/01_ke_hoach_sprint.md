@@ -98,4 +98,4 @@ Nhóm cần lưu ảnh, log hoặc kết quả kiểm thử trên localhost vào
 
 Khi US-00 được xác nhận hoạt động đúng và đáp ứng Acceptance Criteria, Sprint 1 có thể được cập nhật thành **6/6 hạng mục P0 hoàn thành**.
 
-**Ngoài phạm vi Sprint 1:** Matching, thông báo, xác minh vật phẩm, chat, phòng bàn giao và Admin; các chức năng này thuộc những Sprint sau.
+
