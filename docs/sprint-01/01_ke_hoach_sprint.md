@@ -18,7 +18,7 @@ Sprint 1 giải quyết tình trạng thông tin phân tán, khó tìm lại do 
 
 | Mã | Chức năng | Yêu cầu chính | Ưu tiên | Trạng thái |
 |---|---|---|---|---|
-| US-00 | Đăng ký, đăng nhập, đăng xuất | Tạo tài khoản, xác thực email và mật khẩu, quản lý phiên đăng nhập | P0 | Chờ xác nhận |
+| US-00 | Đăng ký, đăng nhập, đăng xuất | Tạo tài khoản, xác thực email và mật khẩu, quản lý phiên đăng nhập | P0 | Hoàn thành |
 | US-01 | Đăng tin nhanh | Chọn LOST/FOUND, tên, danh mục, mô tả, thời gian và khu vực | P0 | Hoàn thành |
 | US-02 | Danh sách bài đăng | Hiển thị các bài đang mở, mới nhất trước, có phân trang | P0 | Hoàn thành |
 | US-03 | Tìm kiếm từ khóa | Tìm theo tên hoặc mô tả vật phẩm | P0 | Hoàn thành |
